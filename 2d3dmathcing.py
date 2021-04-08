@@ -54,7 +54,7 @@ desc_model = np.array(desc_df["DESCRIPTORS"].to_list()).astype(np.float32)
 # Load quaery image
 idx = 200
 fname = ((images_df.loc[images_df["IMAGE_ID"] == idx])["NAME"].values)[0]
-rimg = cv2.imread("frames/"+fname,cv2.IMREAD_GRAYSCALE)
+rimg = cv2.imread("data/frames/"+fname,cv2.IMREAD_GRAYSCALE)
 
 # Load query keypoints and descriptors
 points = point_desc_df.loc[point_desc_df["IMAGE_ID"]==idx]
