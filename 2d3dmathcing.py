@@ -5,7 +5,7 @@ import cv2
 import time
 
 images_df = pd.read_pickle("data/images.pkl")
-train_df = pd.read_pickle("data/pointclouds.pkl")
+train_df = pd.read_pickle("data/train.pkl")
 points3D_df = pd.read_pickle("data/points3D.pkl")
 point_desc_df = pd.read_pickle("data/point_desc.pkl")
 
