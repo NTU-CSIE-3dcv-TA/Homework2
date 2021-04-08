@@ -46,16 +46,17 @@ def pnpsolver(query,model,cameraMatrix=0,distortion=0):
 
     return cv2.solvePnPRansac(points3D, points2D, cameraMatrix, distCoeffs)
 
-
 # Process model descriptors
 desc_df = average_desc(train_df, points3D_df)
 kp_model = np.array(desc_df["XYZ"].to_list())
-desc_model = np.array(desc_df["DESCRIPTORS"].to_# Find correspondance and solve pnp
-retval, rvec, tvec, inliers = pnpsolver((kp_query, desc_query),(kp_model, desc_model))
-rotq = R.from_rotvec(rvec.reshape(1,3)).as_quat()
-tvec = tvec.reshape(1,3)AD_GRAYSCALE)
+desc_model = np.array(desc_df["DESCRIPTORS"].to_list()).astype(np.float32)
 
+# Load quaery image
+idx = 200
+fname = ((images_df.loc[images_df["IMAGE_ID"] == idx])["NAME"].values)[0]
+rimg = cv2.imread("frames/"+fname,cv2.IMREAD_GRAYSCALE)
 
+# Load query keypoints and descriptors
 points = point_desc_df.loc[point_desc_df["IMAGE_ID"]==idx]
 kp_query = np.array(points["XY"].to_list())
 desc_query = np.array(points["DESCRIPTORS"].to_list()).astype(np.float32)
@@ -65,12 +66,8 @@ retval, rvec, tvec, inliers = pnpsolver((kp_query, desc_query),(kp_model, desc_m
 rotq = R.from_rotvec(rvec.reshape(1,3)).as_quat()
 tvec = tvec.reshape(1,3)
 
-
 # Get camera pose groudtruth 
 ground_truth = images_df.loc[images_df["IMAGE_ID"]==idx]
 rotq_gt = ground_truth[["QX","QY","QZ","QW"]].values
 tvec_gt = ground_truth[["TX","TY","TZ"]].values
-
-
-
 
