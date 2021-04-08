@@ -4,9 +4,9 @@ import numpy as np
 import cv2
 import time
 
-images_df = pd.read_pickle("data/images_df.df")
+images_df = pd.read_pickle("data/images.pkl")
 train_df = pd.read_pickle("data/pointclouds.pkl")
-points3D_df = pd.read_pickle("data/points3D_df.df")
+points3D_df = pd.read_pickle("data/points3D.pkl")
 point_desc_df = pd.read_pickle("data/point_desc.pkl")
 
 def average(x):
