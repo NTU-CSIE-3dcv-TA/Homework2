@@ -95,7 +95,7 @@ vis = o3d.visualization.VisualizerWithKeyCallback()
 vis.create_window()
 
 # load point cloud
-points3D_df = pd.read_pickle("dataframes/points3D.pkl")
+points3D_df = pd.read_pickle("data/points3D.pkl")
 pcd = load_point_cloud(points3D_df)
 vis.add_geometry(pcd)
 
